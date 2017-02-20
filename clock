@@ -1,0 +1,78 @@
+local varBool = true
+local varHeure = 0
+local varDaynight = 0
+ 
+while varBool do
+       
+        -- On recupere l'heure inGame
+        varHeure = os.time()
+        -- On recupere l'heure irl
+        --heure = os.clock()
+ 
+        --Detection jour/nuit
+        if varHeure < 12 then
+                varDaynight = 4096
+                print("Jour")
+        else
+                -- Active le cable magenta
+                varDaynight = 4
+                print("Nuit")
+        end
+ 
+        if varHeure < 1 or (varHeure > 12 and varHeure < 13 ) then
+                -- Active le cable white
+                varDaynight = varDaynight + 1
+                print("0H")
+        elseif varHeure < 2 or (varHeure > 13 and varHeure < 14 ) then
+                -- Active le cable yellow
+                varDaynight = varDaynight + 16
+                print("1H")
+        elseif varHeure < 3 or (varHeure > 14 and varHeure < 15 ) then
+                -- Active le cable lime
+                varDaynight = varDaynight + 32
+                print("2H")
+        elseif varHeure < 4 or (varHeure > 15 and varHeure < 16 ) then
+                -- Active le cable pink
+                varDaynight = varDaynight + 64
+                print("3H")
+        elseif varHeure < 5 or (varHeure > 16 and varHeure < 17 ) then
+                -- Active le cable orange
+                varDaynight = varDaynight + 2
+                print("4H")
+        elseif varHeure < 6 or (varHeure > 17 and varHeure < 18 ) then
+                -- Active le cable blue
+                varDaynight = varDaynight + 2048
+                print("5H")
+        elseif varHeure < 7 or (varHeure > 18 and varHeure < 19 ) then
+                -- Active le cable green
+                varDaynight = varDaynight + 8192
+                print("6H")
+        elseif varHeure < 8 or (varHeure > 19 and varHeure < 20 ) then
+                -- Active le cable red
+                varDaynight = varDaynight + 16384
+                print("7H")
+        elseif varHeure < 9 or (varHeure > 20 and varHeure < 21 ) then
+                -- Active le cable black
+                varDaynight = varDaynight + 32768
+                print("8H")
+        elseif varHeure < 10 or (varHeure > 21 and varHeure < 22 ) then
+                -- Active le cable gray
+                varDaynight = varDaynight + 128
+                print("9H")
+        elseif varHeure < 11 or (varHeure > 22 and varHeure < 23 ) then
+                -- Active le cable cyan
+                varDaynight = varDaynight + 512
+                print("10H")
+        elseif varHeure < 12 or (varHeure > 23 and varHeure < 24 ) then
+                -- Active le cable purple
+                varDaynight = varDaynight + 1024
+                print("11H")
+        end
+ 
+        --On envoie le signal
+        redstone.setBundledOutput("back", varDaynight)
+ 
+        --Mise en veille de l'ordi
+        --Economie de ressource
+        os.sleep(20)
+end
